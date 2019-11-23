@@ -26,8 +26,11 @@ class CheckinController {
         where: {
           eventId: req.params.eventId
         }
-      }).then(c => {
-        return res.json({success: true, count: c});
+      }).then(checkinLen => {
+        models.User.count()
+          .then(userLen => {
+            return res.json({success: true, checkinLen: checkinLen, userLen: userLen});
+          });
       });
     } else {
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
