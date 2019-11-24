@@ -1,4 +1,4 @@
-import models from '../models';
+  import models from '../models';
 
 const Op = models.Sequelize.Op;
 
@@ -52,7 +52,7 @@ class LuckyDrawController {
         } else {
           models.User.findAll({
             order: models.sequelize.random(), 
-            limit: req.body.winnerCount,
+            limit: parseInt(req.body.winnerCount),
             where: {
               isWinner: false,
               isRegistered: true,
